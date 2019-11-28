@@ -1,9 +1,11 @@
 import {
-  SET_ACTIVE_ROUTE
+  SET_ACTIVE_ROUTE,
+  SET_HEADER_TITLE,
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  activeRoute: ''
+  activeRoute: '',
+  headerTitle: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,6 +14,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         activeRoute: action.payload,
+      }
+    case SET_HEADER_TITLE:
+      return {
+        ...state,
+        headerTitle: action.payload,
       }
     default:
       return state;

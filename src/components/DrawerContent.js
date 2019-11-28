@@ -6,7 +6,13 @@ import ListItem from './DrawerContentListItem';
 const DATA = [
   {
     id: '1',
-    name: 'Home',
+		name: 'Home',
+		icon: 'home',
+  },
+  {
+    id: '2',
+		name: 'Dashboard',
+		icon: 'drawer',
   },
 ];
 
@@ -34,12 +40,15 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#333'
+		// backgroundColor: '#001F3F',
 	},
 	drawerText: {
-		color: '#fff'
+		// color: 'gray'
+		color: '#80BFFF'
 	},
 	topDrawer: {
 		flex: 1,
+		// backgroundColor: '#001F3F',
 		backgroundColor: '#000',
 		justifyContent: 'center',
 		alignContent: 'center',
@@ -48,9 +57,11 @@ const styles = StyleSheet.create({
 	bottomDrawer: {
 		flex: 2,
 		backgroundColor: '#fff',
+		// backgroundColor: '#001F3F',
 		paddingHorizontal: 15,
 		paddingVertical: 15
 	}
 });
 
 export default connect(null, {})(DrawerContent);
+
