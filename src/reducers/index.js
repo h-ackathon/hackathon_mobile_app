@@ -4,6 +4,7 @@ import RouterComponent from './RoutesReducer';
 import NewsReducer from './NewsReducer';
 import TeamsReducer from './TeamsReducer';
 import FantasyReducer from './FantasyReducer';
+import LeaguePlayersReducer from './LeaguePlayersReducer';
 
 export default combineReducers({
   home: HomeReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   news: NewsReducer,
   teams: TeamsReducer,
   fantasyList: FantasyReducer,
+  leaguePlayers: LeaguePlayersReducer,
 });

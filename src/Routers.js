@@ -19,6 +19,7 @@ import AllNews from "./components/AllNews";
 import OdiRankings from "./components/OdiRankings";
 import FantasyList from "./components/FantasyList";
 import FantasyDetails from "./components/FantasyDetails";
+import PlayersList from "./components/PlayersList";
 import NavBar from "./components/NavBar";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LineIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -118,6 +119,14 @@ class RouterComponent extends React.Component {
                 navBar={NavBar}
                 // back
                 // renderBackButton={() => this.renderBackButton()}
+              />
+              <Scene
+                key="playersList"
+                title="All Players"
+                component={PlayersList}
+                // navBar={NavBar}
+                back
+                renderBackButton={() => this.renderBackButton()}
               />
               <Scene key="allnews"
                 title="NEWS"

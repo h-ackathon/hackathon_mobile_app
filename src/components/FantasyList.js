@@ -10,7 +10,7 @@ class FantasyList extends React.Component {
 
   componentDidMount() {
     this.props.fantasyList();
-    this.props.getPlayersByFantasy(this.props.allFantasy[0].key);
+    // this.props.getPlayersByFantasy(this.props.allFantasy[0].key || null);
     this.props.navigation.setParams({title: "hello"})
   }
 

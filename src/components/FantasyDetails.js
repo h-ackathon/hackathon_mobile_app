@@ -5,6 +5,7 @@ import { CardSection, SectionTopBorder } from './common';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import { setHeaderTitle } from "../actions";
+import { Actions } from 'react-native-router-flux';
 
 class FantasyDetail extends React.Component {
   componentDidMount(){
@@ -47,7 +48,7 @@ class FantasyDetail extends React.Component {
             marginBottom: 30,
           }}
         >
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={()=>Actions.playersList({leagueId: this.props.league.key})}>
             <Text>Transfers</Text>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback>

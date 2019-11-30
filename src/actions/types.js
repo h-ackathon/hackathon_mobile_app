@@ -11,3 +11,7 @@ export const GET_FANTASY_LIST = "get_fantasy_list";
 export const FANTASY_LIST_SPINNER = "fantasy_list_spinner";
 export const FANTASY_LIST_SUCCESS = "fantasy_list_success";
 
+export const GET_LEAGUE_PLAYERS = "get_league_players";
+export const LEAGUE_PLAYERS_SPINNER = "league_players_spinner";
+export const LEAGUE_PLAYERS_SUCCESS = "league_players_success";
+
