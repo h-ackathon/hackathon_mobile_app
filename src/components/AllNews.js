@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Image, ScrollView } from 'react-native';
 import { Card, CardSection, Spinner, } from './common';
+import LineIcon from "react-native-vector-icons/SimpleLineIcons";
 
 class AllNews extends React.Component {
 
@@ -10,6 +11,8 @@ class AllNews extends React.Component {
       textContainer,
       imageStyles,
       authorStyles,
+      videoIconContainer,
+      videoDurationStyles,
       titleStyles } = styles;
 
     return (this.props.news.map((item, i) => {
@@ -19,12 +22,18 @@ class AllNews extends React.Component {
           <Text style={authorStyles}>{item.artist}</Text>
           <Text style={titleStyles}>{item.title}</Text>
         </View>
+        {this.props.videoBtn ?
+          <View style={videoIconContainer}>
+            <LineIcon name="control-play" size={12} style={{ backgroundColor: '#FE1F7C', padding: 3 }} color="#fff" />
+            <Text style={videoDurationStyles}>2:53</Text>
+          </View> :
+          null
+        }
       </CardSection>)
     }))
   }
 
   render() {
-    console.log(this.props)
     return (
       <ScrollView>
         {this.renderContent()}
@@ -43,7 +52,6 @@ const styles = {
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flex: 1,
-    // marginTop: 5,
   },
   imageStyles: {
     resizeMode: 'cover',
@@ -74,6 +82,22 @@ const styles = {
     // color: '#EA247B',
     marginBottom: 5,
   },
+  videoIconContainer: {
+		position: 'absolute',
+		backgroundColor: '#37003C',
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingHorizontal: 5,
+		paddingLeft: 0,
+		bottom: 10,
+		left: 10,
+	},
+	videoDurationStyles: {
+		marginLeft: 5,
+		color: '#fff',
+		fontSize: 11,
+		fontWeight: "600",
+	},
 }
 
 

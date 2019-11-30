@@ -10,20 +10,22 @@ class NavBar extends React.Component {
     return (
       <CardSection
         style={{
-          paddingTop: 35,
-          backgroundColor: '#46044D',
+          paddingTop: 55,
+          paddingBottom: 20,
+          backgroundColor: '#37003C',
           alignItems: 'center',
           justifyContent: 'flex-start'
         }}
       >
-        <TouchableWithoutFeedback onPress={() => Actions.drawerOpen()}>
-          <LineIcon name="menu" style={{ paddingHorizontal: 5, paddingVertical: 5 }} size={25} color="#fff" />
+        <TouchableWithoutFeedback onPress={() => Actions.pop()}>
+          <LineIcon name="arrow-left"
+            style={{
+              paddingHorizontal: 8,
+              paddingVertical: 5
+            }}
+            size={20} color="#fff" />
         </TouchableWithoutFeedback>
-        <Text>{this.props.headerTitle}</Text>
-        {/* <Input
-          label="Search"
-          placeholder="Keyword..."
-        /> */}
+        <Text style={{fontSize: 18, fontWeight:"500", color: '#EA247B'}}>{this.props.headerTitle}</Text>
       </CardSection>
     );
   }

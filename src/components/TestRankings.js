@@ -25,19 +25,21 @@ class TestRankings extends React.Component {
           {this.props.testTeams && this.props.testTeams.map((team, i) => {
             return (
               <View
-              key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                width: '50%',
-                backgroundColor: '#47054D',
-                // backgroundColor: '#46044D',
-                borderStyle: 'solid',
-                borderColor: '#37003C',
-                borderRadius: 8,
-                borderWidth: 5,
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '50%',
+                  backgroundColor: '#47054D',
+                  // backgroundColor: '#46044D',
+                  borderStyle: 'solid',
+                  borderColor: '#37003C',
+                  borderRadius: 8,
+                  borderWidth: 5,
+                  borderLeftWidth: i % 2 === 0 ? 10 : 5,
+                  borderRightWidth: i % 2 !== 0 ? 10 : 5,
                 }}
-                >
+              >
                 <View style={{
                   paddingVertical: 20,
                   paddingBottom: 0,

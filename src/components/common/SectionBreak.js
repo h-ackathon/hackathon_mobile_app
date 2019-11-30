@@ -6,7 +6,7 @@ class SectionBreak extends React.Component{
     return (
       <View style={{
         borderColor: '#ddd',
-        borderTopWidth: 2,
+        borderTopWidth: 1,
         position: 'relative',
       }}>
       </View>

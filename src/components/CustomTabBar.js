@@ -64,12 +64,11 @@ class CustomTabBar extends React.Component {
                 name={this.props.icons.ranking}
                 size={19}
               /> :
-              // <MaterialIcons
-              //   style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}
-              //   name="cricket"
-              //   size={19}
-              // />
-              null
+              <MaterialIcons
+                style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}
+                name="cricket"
+                size={19}
+              />
               }
               <Text style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}>{element.key.toUpperCase()}</Text>
             </TouchableOpacity>

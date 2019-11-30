@@ -19,8 +19,6 @@ const NewsItems = ({ news, videoBtn }) => {
 		videoIconContainer,
 	} = styles;
 
-	console.log(videoBtn);
-
 	return (
 		// // <View>
 		// 	{/* <CardSection>

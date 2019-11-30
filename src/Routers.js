@@ -17,6 +17,8 @@ import RankingTabBar from './components/RankingTabBar';
 import DrawerContent from "./components/DrawerContent";
 import AllNews from "./components/AllNews";
 import OdiRankings from "./components/OdiRankings";
+import FantasyList from "./components/FantasyList";
+import FantasyDetails from "./components/FantasyDetails";
 import NavBar from "./components/NavBar";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LineIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -30,7 +32,7 @@ class RouterComponent extends React.Component {
   renderBackButton = () => {
     return (
       <TouchableWithoutFeedback onPress={() => Actions.pop()}>
-        <MaterialIcon name="arrow-left" style={{marginLeft: 8}} size={20} color="#fff" />
+        <MaterialIcon name="arrow-left" style={{ marginLeft: 8 }} size={20} color="#fff" />
       </TouchableWithoutFeedback>
     )
   }
@@ -53,7 +55,7 @@ class RouterComponent extends React.Component {
               navigationBarStyle={{ backgroundColor: '#37003C' }}
               // navigationBarStyle={{ backgroundColor: '#001F3F' }}
               titleStyle={{ color: 'white', alignSelf: 'center' }}
-              headerMode="screen"
+              // headerMode="screen"
               // cardStyle= {{ backgroundColor: '#46044D' }}
               cardStyle={{ backgroundColor: '#37003C' }}
             // hideNavBar
@@ -64,12 +66,13 @@ class RouterComponent extends React.Component {
                 tabs
                 key="tabBar"
                 wrap={Platform.OS === 'ios' ? false : true}
+                // wrap={Platform.OS === 'ios' ? false : true}
                 // headerMode="screen"
                 // renderTitle="Blog"
                 // navBar={NavBar}
                 // tabBarPosition="top"
                 tabBarComponent={CustomTabBar}
-                icons={{ news: "book-open", ranking: "graph" }}
+                icons={{ news: "book-open", ranking: "graph", }}
                 navigationBarStyle={{ backgroundColor: '#37003C', }}
                 // navigationBarStyle={{ backgroundColor: '#46044D', }}
                 hideNavBar={Platform.OS === 'ios' ? false : true}
@@ -100,8 +103,31 @@ class RouterComponent extends React.Component {
                     // hideNavBar={Platform.OS === 'ios' ? false : true}
                     title="T20" />
                 </Scene>
+                <Scene
+                  key="fantasy"
+                  title="Fantasy"
+                  component={FantasyList}
+                  back
+                  renderBackButton={() => this.renderBackButton()}
+                />
               </Scene>
-              <Scene key="allnews" title="NEWS" component={AllNews} back renderBackButton={() => this.renderBackButton()}>
+              <Scene
+                key="fantasyDetails"
+                title="League Details"
+                component={FantasyDetails}
+                navBar={NavBar}
+                // back
+                // renderBackButton={() => this.renderBackButton()}
+              />
+              <Scene key="allnews"
+                title="NEWS"
+                component={AllNews} back
+                renderBackButton={() => this.renderBackButton()}>
+              </Scene>
+              <Scene key="allvideos"
+                title="VIDEOS"
+                component={AllNews} back
+                renderBackButton={() => this.renderBackButton()}>
               </Scene>
             </Scene>
           </Stack>

@@ -77,10 +77,10 @@ class News extends React.Component {
           <CardSection
             style={allConatinerStyles}
           >
-            <TouchableWithoutFeedback onPress={() => Actions.allnews({ news: this.props.news })}>
+            <TouchableWithoutFeedback onPress={() => Actions.allnews({ news: this.props.news, videoBtn: false })}>
               <Text style={allTextStyles}>All News</Text>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={() => Actions.allnews({ news: this.props.news })}>
+            <TouchableWithoutFeedback onPress={() => Actions.allnews({ news: this.props.news, videoBtn: false })}>
               <MaterialIcon style={allIconStyles} name="arrow-right" size={15} />
             </TouchableWithoutFeedback>
           </CardSection>
@@ -103,8 +103,12 @@ class News extends React.Component {
           <CardSection
             style={allConatinerStyles}
           >
-            <Text style={allTextStyles}>All Videos</Text>
-            <MaterialIcon style={allIconStyles} name="arrow-right" size={15} />
+            <TouchableWithoutFeedback onPress={() => Actions.allvideos({ news: this.props.news, videoBtn: true })}>
+              <Text style={allTextStyles}>All Videos</Text>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => Actions.allvideos({ news: this.props.news, videoBtn: true })}>
+              <MaterialIcon style={allIconStyles} name="arrow-right" size={15} />
+            </TouchableWithoutFeedback>
           </CardSection>
         </View>
 
