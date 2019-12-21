@@ -11,6 +11,10 @@ import { Text, Platform, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import Home from './components/Home';
 import News from './components/News';
+import IosFonts from './components/IosFonts';
+import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
+import MatchDetails from './components/MatchDetails';
 import TestRankings from './components/TestRankings';
 import CustomTabBar from './components/CustomTabBar';
 import RankingTabBar from './components/RankingTabBar';
@@ -19,15 +23,19 @@ import AllNews from "./components/AllNews";
 import OdiRankings from "./components/OdiRankings";
 import FantasyList from "./components/FantasyList";
 import FantasyDetails from "./components/FantasyDetails";
+import UserFantasyTeam from "./components/UserFantasyTeam";
+import UserPlayingTeam from "./components/UserPlayingTeam";
 import PlayersList from "./components/PlayersList";
 import NavBar from "./components/NavBar";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { setSquadToDefault, restoreChanges, resetRenderShuffleTeam } from "./actions";
 
 const tabStyles = {
   color: "red"
 }
+
 class RouterComponent extends React.Component {
 
   renderBackButton = () => {
@@ -36,6 +44,12 @@ class RouterComponent extends React.Component {
         <MaterialIcon name="arrow-left" style={{ marginLeft: 8 }} size={20} color="#fff" />
       </TouchableWithoutFeedback>
     )
+  }
+
+  tabBarOnPress = () => {
+    this.props.setSquadToDefault();
+    this.props.resetRenderShuffleTeam();
+    this.props.restoreChanges();
   }
 
   renderScenes = () => {
@@ -53,56 +67,41 @@ class RouterComponent extends React.Component {
           >
             <Scene
               key="root"
+              // rightTitle={this.props.user ? "Welcome" : "NO USER"}
+              // onRight={() => console.log("RIGHT PRESSED")}
               navigationBarStyle={{ backgroundColor: '#37003C' }}
-              // navigationBarStyle={{ backgroundColor: '#001F3F' }}
               titleStyle={{ color: 'white', alignSelf: 'center' }}
-              // headerMode="screen"
-              // cardStyle= {{ backgroundColor: '#46044D' }}
               cardStyle={{ backgroundColor: '#37003C' }}
-            // hideNavBar
-            // navBar={NavBar}
             >
               <Scene title="Home" key="home" component={Home} />
               <Scene
                 tabs
                 key="tabBar"
                 wrap={Platform.OS === 'ios' ? false : true}
-                // wrap={Platform.OS === 'ios' ? false : true}
-                // headerMode="screen"
-                // renderTitle="Blog"
-                // navBar={NavBar}
-                // tabBarPosition="top"
                 tabBarComponent={CustomTabBar}
                 icons={{ news: "book-open", ranking: "graph", }}
                 navigationBarStyle={{ backgroundColor: '#37003C', }}
-                // navigationBarStyle={{ backgroundColor: '#46044D', }}
                 hideNavBar={Platform.OS === 'ios' ? false : true}
-                // hideNavBar
                 initial
               >
                 <Scene key="latest"
-                  // hideNavBar={Platform.OS === 'ios' ? false : true} 
                   component={News} title="Latest" />
                 <Scene title="Rankings" key="rankings"
                   tabBarPosition={Platform.OS == 'ios' ? "top" : "bottom"}
                   activeBackgroundColor="white"
                   tabBarComponent={CustomTabBar}
                   inactiveBackgroundColor="rgba(255, 0, 0, 0.5)"
-                  // hideNavBar={Platform.OS === 'ios' ? false : true}
-                  swipeEnabled={true}
-                  scrollEnabled={true}
                   tabBarStyle={{ position: 'absolute', top: 0, zIndex: 9999999, backgroundColor: 'purple' }}
                   tabs
                 >
                   <Scene key="odi" component={OdiRankings}
-                    // hideNavBar={Platform.OS === 'ios' ? false : true}
                     title="ODI" />
                   <Scene key="test" component={TestRankings}
-                    // hideNavBar={Platform.OS === 'ios' ? false : true}
                     title="Test" />
                   <Scene key="t20" component={TestRankings}
-                    // hideNavBar={Platform.OS === 'ios' ? false : true}
                     title="T20" />
+                  <Scene key="ios" component={IosFonts}
+                    title="IOS" />
                 </Scene>
                 <Scene
                   key="fantasy"
@@ -117,17 +116,43 @@ class RouterComponent extends React.Component {
                 title="League Details"
                 component={FantasyDetails}
                 navBar={NavBar}
-                // back
-                // renderBackButton={() => this.renderBackButton()}
               />
               <Scene
                 key="playersList"
-                title="All Players"
+                title="Transfers"
                 component={PlayersList}
-                // navBar={NavBar}
                 back
                 renderBackButton={() => this.renderBackButton()}
               />
+              <Scene
+                key="userTeam"
+                title="Pick Team"
+                back
+                renderBackButton={() => this.renderBackButton()}
+                tabs
+                wrap={false}
+                tabBarComponent={RankingTabBar}
+              >
+                <Scene
+                  key="squadPlaying"
+                  title="Squad"
+                  component={UserPlayingTeam}
+                  onExit={() => this.tabBarOnPress()}
+                />
+                <Scene
+                  key="listPlaying"
+                  title="Playing"
+                  component={UserFantasyTeam}
+                  onExit={() => this.tabBarOnPress()}
+                />
+              </Scene>
+              <Scene key="matchDetails"
+                title="Details"
+                component={MatchDetails}
+                back
+                // navBar={NavBar}
+                renderBackButton={() => this.renderBackButton()}>
+              </Scene>
               <Scene key="allnews"
                 title="NEWS"
                 component={AllNews} back
@@ -140,6 +165,8 @@ class RouterComponent extends React.Component {
               </Scene>
             </Scene>
           </Stack>
+          <Scene key="login" title="Login" component={LoginForm} />
+          <Scene key="register" title="Register" component={SignUpForm} />
         </Modal>
       )
     );
@@ -148,21 +175,24 @@ class RouterComponent extends React.Component {
 
   render() {
     return (
-      <Router scenes={this.renderScenes()}
-      // sceneStyle={{
-      //   cardStyle: { backgroundColor: 'red' }
-      // }}
-      />
+      <Router scenes={this.renderScenes()} />
     );
   }
 }
 
 const mapStateToProps = state => {
 
-  const { headerTitle } = state.router;
+  const { user } = state.auth;
   return {
-    headerTitle,
+    user,
   };
 }
 
-export default connect(null, {})(RouterComponent);
+export default connect(
+  null,
+  {
+    setSquadToDefault,
+    resetRenderShuffleTeam,
+    restoreChanges
+  }
+)(RouterComponent);

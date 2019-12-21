@@ -3,3 +3,7 @@ export * from './RouterActions';
 export * from './NewsActions';
 export * from './TeamsActions';
 export * from './FantasyActions';
+export * from './UserTeamActions';
+export * from './PlayerListOptions';
+export * from './MatchesActions';
+export * from './AuthActions';

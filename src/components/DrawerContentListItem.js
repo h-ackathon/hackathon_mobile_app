@@ -12,9 +12,13 @@ class ListItem extends Component {
 
 	onPress() {
 		if (this.props.item.name === "Dashboard")
-				Actions.tabBar();
+			Actions.tabBar();
 		if (this.props.item.name === "Home")
-				Actions.home();
+			Actions.home();
+		if (this.props.item.name === "Login")
+			Actions.login();
+		// if (this.props.item.name === "Logout") 
+			// Actions.login();
 	}
 
 	logOut = () => {
@@ -25,7 +29,6 @@ class ListItem extends Component {
 		return (
 			<TouchableWithoutFeedback onPress={this.onPress.bind(this)}>
 				<View style={styles.container}>
-
 					<View style={styles.innerContainer}>
 						<LineIcon
 							style={

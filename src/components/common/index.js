@@ -10,3 +10,5 @@ export * from './ListItem';
 export * from './Chip';
 export * from './SectionBreak';
 export * from './SectionTopBorder';
+export * from './IconButton';
+export * from './DisableButton';

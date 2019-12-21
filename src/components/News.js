@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import NewsItems from "./NewsItems";
 import TrendingNews from "./TrendingNews";
 import TopNewsSection from "./TopNewsSection";
-import { newsList, setActiveRoute, setHeaderTitle, teamsRanking } from "../actions";
+import { newsList, setActiveRoute, setHeaderTitle, teamsRanking, setActiveUser } from "../actions";
 import { Actions } from 'react-native-router-flux';
 import { SectionTopBorder, SectionBreak, Card, CardSection } from './common';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const trendinNews = {
   artist: "Taylor Swift",
@@ -21,10 +22,22 @@ const trendinNews = {
 class News extends React.Component {
 
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.props.setActiveUser();
     this.props.setActiveRoute('Dashboard');
     this.props.setHeaderTitle('News');
     this.props.newsList();
+    // if (this.props.user == null) {
+    //   try {
+    //     const value = await AsyncStorage.getItem('loggedUser');
+    //     if (value !== null) {
+    //       // console.log("USER FROM NEWS ASYNC STORAGE:--", JSON.parse(value));
+    //       this.props.setActiveUser(JSON.parse(value));
+    //     }
+    //   } catch (e) {
+
+    //   }
+    // }
     // this.props.teamsRanking();
   }
 
@@ -152,7 +165,8 @@ const styles = {
 const mapStateToProps = state => {
   return {
     news: state.news.news,
+    // user: state.auth.user,
   };
 }
 
-export default connect(mapStateToProps, { newsList, setActiveRoute, setHeaderTitle, teamsRanking })(News);
+export default connect(mapStateToProps, { newsList, setActiveRoute, setHeaderTitle, setActiveUser, teamsRanking })(News);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
-import { fantasyList, getPlayersByFantasy } from "../actions";
+import { fantasyList, getPlayersByFantasy, setSelectedLeague } from "../actions";
 import { connect } from 'react-redux';
 import { Spinner, CardSection } from './common';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,7 +11,13 @@ class FantasyList extends React.Component {
   componentDidMount() {
     this.props.fantasyList();
     // this.props.getPlayersByFantasy(this.props.allFantasy[0].key || null);
-    this.props.navigation.setParams({title: "hello"})
+    // this.props.navigation.setParams({ title: "Fantasy" })
+    
+  }
+
+  fantasyDetails = (league) => {
+    this.props.setSelectedLeague(league);
+    Actions.fantasyDetails();
   }
 
   renderContent = () => {
@@ -30,10 +36,10 @@ class FantasyList extends React.Component {
             alignItems: 'center',
             padding: 8, margin: 8,
           }} key={i}>
-            <TouchableWithoutFeedback onPress={() => Actions.fantasyDetails({league: item})}>
+            <TouchableWithoutFeedback onPress={() => this.fantasyDetails(item)}>
               <Text style={{ flex: 1 }}>{item.name}</Text>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={() => Actions.fantasyDetails({league: item})}>
+            <TouchableWithoutFeedback onPress={() => this.fantasyDetails(item)}>
               <MaterialCommunityIcons name="arrow-right" size={20} />
             </TouchableWithoutFeedback>
           </CardSection>
@@ -45,14 +51,7 @@ class FantasyList extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <View>
-        <Text style={{
-          fontStyle: 'italic',
-          fontWeight: "600", fontSize: 25,
-          color: '#EA247B', padding: 10,
-        }}>Fantasy Leagues</Text>
-        {this.renderContent()}
-      </View>
+      this.renderContent()
     );
   }
 }
@@ -64,4 +63,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fantasyList, getPlayersByFantasy })(FantasyList);
+export default connect(mapStateToProps, { fantasyList, getPlayersByFantasy, setSelectedLeague })(FantasyList);

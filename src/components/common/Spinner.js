@@ -7,6 +7,7 @@ const Spinner = ({ size }) => {
 		<View style={styles.spinnerStyle}>
 			<ActivityIndicator 
 				size={size || 'large'}
+				color="#FF2883"
 			/>
 		</View>
 	);

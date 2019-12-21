@@ -90,14 +90,17 @@ const styles = {
     flex: 1,
     fontSize: 12,
     fontWeight: "600",
+    fontFamily: 'AppleSDGothicNeo-Medium',
   },
   titleStyles: {
     flex: 5,
     fontSize: 12,
+    fontFamily: 'AppleSDGothicNeo-Medium',
   },
   pointsStyles: {
     flex: 2,
     fontSize: 12,
+    fontFamily: 'AppleSDGothicNeo-Medium',
   }
 }
 

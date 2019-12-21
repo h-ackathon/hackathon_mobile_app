@@ -24,7 +24,7 @@ const Confirm = ({ children, visible, onAccept, onDecline }) => {
 				</CardSection>
 
 				<CardSection>
-					<Button onPress={onAccept}>OK</Button>
+					<Button text="OK" background="#37003C" textColor="#fff" onPress={onAccept}>OK</Button>
 				</CardSection>
 			</View>
 		</Modal>

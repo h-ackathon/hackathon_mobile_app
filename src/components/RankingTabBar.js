@@ -52,8 +52,8 @@ class RankingTabBar extends React.Component {
               alignItems: 'center',
               // borderTopWidth: this.setActiveBorderWidth(activeTabIndex, i),
               // borderTopColor: this.setActiveBorder(activeTabIndex, i),
-              borderBottomWidth: this.setActiveBorderWidth(activeTabIndex, i),
-              borderBottomColor: this.setActiveBorder(activeTabIndex, i),
+              borderTopWidth: this.setActiveBorderWidth(activeTabIndex, i),
+              borderTopColor: this.setActiveBorder(activeTabIndex, i),
             }} key={element.key} onPress={() => Actions[element.key]()}>
               {element.key === "news" ?
                 <SimpleLineIcons
@@ -66,13 +66,16 @@ class RankingTabBar extends React.Component {
                   name={this.props.icons.ranking}
                   size={19}
                 /> :
-                <MaterialIcons
-                  style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}
-                  name="cricket"
-                  size={19}
-                />
+                // <MaterialIcons
+                //   style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}
+                //   name="cricket"
+                //   size={19}
+                // />
+                null
               }
-              <Text style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}>{element.key.toUpperCase()}</Text>
+              <Text style={activeTabIndex == i ? styles.activeStyle : styles.textStyle}>
+                {element.key === 'squadPlaying' ? element.key.substring(0, 5).toUpperCase() : element.key.substring(0, 4).toUpperCase()}
+                </Text>
             </TouchableOpacity>
           ))
         }

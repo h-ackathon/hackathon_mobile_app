@@ -60,7 +60,7 @@ class TopNewsSection extends React.Component {
 
     return (
       <CardSection style={mainContainer}>
-        <Image source={{ uri: this.state.imageUrl.image }} style={imageStyle} />
+        <Image source={{ uri: trendinNews.image }} style={imageStyle} />
         <SectionTopBorder />
         <Text style={authorStyle}>{trendinNews.artist}</Text>
         <Text style={titleStyle}>{trendinNews.title}</Text>

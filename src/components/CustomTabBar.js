@@ -30,7 +30,8 @@ class CustomTabBar extends React.Component {
     const { state } = this.props.navigation;
     const activeTabIndex = state.index;
 
-    // console.log(this.props);
+    // console.log(state);
+    // console.log(this.props.navigation.state.routeName);
 
     return (
       <CardSection style={{

@@ -5,6 +5,7 @@ import {
   LEAGUE_PLAYERS_SPINNER,
   LEAGUE_PLAYERS_SUCCESS,
   GET_LEAGUE_PLAYERS,
+  SET_SELECTED_LEAGUE,
 } from './types';
 
 import CricketApi from '../apis/CricketApis';
@@ -32,7 +33,7 @@ export const getPlayersByFantasy = (fantasyId) => {
       type: LEAGUE_PLAYERS_SPINNER,
     });
     CricketApi.get('/leagueplayers/?league='+fantasyId).then((result)=>{
-      console.log('RESULT FROM ALL PLAYERS:--', result);
+      // console.log('RESULT FROM ALL PLAYERS:--', result);
       dispatch({
         type: GET_LEAGUE_PLAYERS,
         payload: result.data.response,
@@ -43,3 +44,10 @@ export const getPlayersByFantasy = (fantasyId) => {
     });
   }
 }
+
+export const setSelectedLeague = (league) => {
+  return {
+    type: SET_SELECTED_LEAGUE,
+    payload: league
+  };
+};
