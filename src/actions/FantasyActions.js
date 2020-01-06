@@ -32,7 +32,7 @@ export const getPlayersByFantasy = (fantasyId) => {
     dispatch({
       type: LEAGUE_PLAYERS_SPINNER,
     });
-    CricketApi.get('/leagueplayers/?league='+fantasyId).then((result)=>{
+    CricketApi.get('/leagueplayers/?league=' + fantasyId).then((result) => {
       // console.log('RESULT FROM ALL PLAYERS:--', result);
       dispatch({
         type: GET_LEAGUE_PLAYERS,
@@ -51,3 +51,13 @@ export const setSelectedLeague = (league) => {
     payload: league
   };
 };
+
+export const getTeamsByFantasy = (leagueId) => {
+  return dispatch => {
+    CricketApi.get('/getleagueteams/?leagueId=' + leagueId).then((result) => {
+      console.log("RESULT FROM ALL TEAMS:--", result);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+}

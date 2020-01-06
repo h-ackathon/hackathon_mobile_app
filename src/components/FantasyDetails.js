@@ -4,13 +4,14 @@ import Standings from './Standings';
 import { CardSection, SectionTopBorder } from './common';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
-import { setHeaderTitle } from "../actions";
+import { setHeaderTitle, getTeamsByFantasy } from "../actions";
 import { Actions } from 'react-native-router-flux';
 import UpcomingMatches from "./UpcomingMatches";
 
 class FantasyDetail extends React.Component {
   componentDidMount() {
     this.props.setHeaderTitle(this.props.league.name);
+    this.props.getTeamsByFantasy(this.props.league.key);
   }
   render() {
     return (
@@ -76,4 +77,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setHeaderTitle })(FantasyDetail);
+export default connect(mapStateToProps, { setHeaderTitle, getTeamsByFantasy })(FantasyDetail);
